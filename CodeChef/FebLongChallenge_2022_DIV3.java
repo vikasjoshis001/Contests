@@ -13,67 +13,129 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.*;
 
-
 /* docstring*/
-class Codeforces {
+class CodeChef {
     static Templates.FastScanner sc = new Templates.FastScanner();
     static PrintWriter fop = new PrintWriter(System.out);
+
     public static void main(String[] args) {
         try {
-            A();
-            // B();
-            // C();
-            // D();
+            // HELIUM3();
+            // WCC();
+            // NOFIX();
+            XORPAL();
             // E();
         } catch (Exception e) {
             return;
         }
     }
 
-    /* docstring*/
-    static void A() throws IOException{
+    /* docstring */
+    static void HELIUM3() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
-          
+            int a = Integer.parseInt(sc.next());
+            int b = Integer.parseInt(sc.next());
+            int x = Integer.parseInt(sc.next());
+            int y = Integer.parseInt(sc.next());
+
+            if( x*y >= a*b){
+                System.out.println("yes");
+            }
+            else{
+                System.out.println("no");
+            }
 
         }
         fop.flush();
         fop.close();
     }
 
-    /* docstring*/
-    static void B() throws IOException{
+    /* docstring */
+    static void WCC() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
+            int x = Integer.parseInt(sc.next());
+            String results = sc.next();
+            int chef = 0;
+            int carlsen = 0;
+            int draw = 0;
+            int n = results.length();
+            for (int i = 0; i < n; i++) {
+                char ch = results.charAt(i);
+                if( ch == 'C') carlsen++;
+                else if(ch == 'N') chef++;
+                else draw++;
+            }
+            if(carlsen > chef){
+                System.out.println(60*x);
+            }
+            else if(chef > carlsen){
+                System.out.println(40*x);
+            }
+            else{
+                System.out.println(55*x);
+            }
         }
         fop.flush();
         fop.close();
     }
 
-    /* docstring*/
-    static void C() throws IOException{
+    /* docstring */
+    static void NOFIX() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
+            int n = Integer.parseInt(sc.next());
+            int arr[] = sc.readArray(n);
+            int count = 0;
+            int index = 0;
+            while(index < n){
+                    if(arr[index] == index+count+1){
+                        count++;
+                    }
+                    index++;
+            }
+            System.out.println(count);
         }
         fop.flush();
         fop.close();
     }
 
-    /* docstring*/
-    static void D() throws IOException{
+    /* docstring */
+    static void XORPAL() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
+            int n = Integer.parseInt(sc.next());
+            String str = sc.next();
+            int countOf_0 = 0;
+            int countOf_1 = 0;
+            for (int i = 0; i < n; i++) {
+                char ch = str.charAt(i);
+                if(ch == '0') countOf_0++;
+                else countOf_1++;
+            }
+            if(n%2 == 0){
+                if( countOf_0 == 0 || countOf_1 == 0) System.out.println("Yes");
+                else if( countOf_0 == countOf_1) System.out.println("Yes");
+                else if( ( Math.max(countOf_0, countOf_1) - Math.min(countOf_0, countOf_1) ) % 2 == 0)
+                    System.out.println("No");
+                else System.out.println("No");
+            }
+            else{
+                if(countOf_0 == 1 || countOf_1 == 1) System.out.println("Yes");
+                else if( countOf_1 == 0) System.out.println("Yes");
+                else if (countOf_0 == 0)
+                    System.out.println("No");
+                else if( ( countOf_0 - countOf_1 ) == 1 ) System.out.println("Yes");
+                else System.out.println("No");
+            }
         }
         fop.flush();
         fop.close();
     }
-    
-    /* docstring*/
-    static void E() throws IOException{
+
+    /* docstring */
+    static void E() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -295,6 +357,28 @@ class Templates {
         return a;
     }
 
+    static int power(int x, int y) {
+        int res = 1; // Initialize result
+
+        x = x % 1000000007; // Update x if it is more than or
+        // equal to p
+
+        if (x == 0)
+            return 0; // In case x is divisible by p;
+
+        while (y > 0) {
+
+            // If y is odd, multiply x with result
+            if ((y & 1) != 0)
+                res = (res * x) % 1000000007;
+
+            // y must be even now
+            y = y >> 1; // y = y/2
+            x = (x * x) % 1000000007;
+        }
+        return res;
+    }
+
     static long gcdl(long a, long b) {
         if (b > a) {
             long tenp = b;
@@ -321,5 +405,14 @@ class Templates {
             a[i] = temp;
         }
         Arrays.sort(a);
+    }
+
+    static void reverse(int a[], int n) {
+        int[] b = new int[n];
+        int j = n;
+        for (int i = 0; i < n; i++) {
+            b[j - 1] = a[i];
+            j = j - 1;
+        }
     }
 }

@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.*;
 
-
 /* docstring*/
 class Codeforces {
     static Templates.FastScanner sc = new Templates.FastScanner();
     static PrintWriter fop = new PrintWriter(System.out);
+
     public static void main(String[] args) {
         try {
             A();
@@ -30,20 +30,44 @@ class Codeforces {
         }
     }
 
-    /* docstring*/
-    static void A() throws IOException{
+    /* docstring */
+    static void A() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
-          
-
+            int n = Integer.parseInt(sc.next());
+            int arr[] = new int[n];
+            boolean flag = true;
+            arr[0] = Integer.parseInt(sc.next());
+            arr[1] = Integer.parseInt(sc.next());
+            int num1 = arr[0];
+            int num2 = arr[1];
+            int prev = num1|num2;
+            for (int i = 2; i < arr.length; i++) {
+                int num = Integer.parseInt(sc.next());
+                arr[i] = num;
+                int next = num | num2;
+                if( next != prev) {
+                    flag = false;
+                }
+                num2 = num;
+            }
+            if(flag){
+                System.out.println(prev);
+            }
+            else{
+                int sum = 0;
+                for (int i = 0; i < arr.length; i++) {
+                    sum+=arr[i];
+                }
+                System.out.println(sum);
+            }
         }
         fop.flush();
         fop.close();
     }
 
-    /* docstring*/
-    static void B() throws IOException{
+    /* docstring */
+    static void B() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -52,8 +76,8 @@ class Codeforces {
         fop.close();
     }
 
-    /* docstring*/
-    static void C() throws IOException{
+    /* docstring */
+    static void C() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -62,8 +86,8 @@ class Codeforces {
         fop.close();
     }
 
-    /* docstring*/
-    static void D() throws IOException{
+    /* docstring */
+    static void D() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -71,9 +95,9 @@ class Codeforces {
         fop.flush();
         fop.close();
     }
-    
-    /* docstring*/
-    static void E() throws IOException{
+
+    /* docstring */
+    static void E() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...

@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.*;
 
-
 /* docstring*/
-class Codeforces {
+class Main {
     static Templates.FastScanner sc = new Templates.FastScanner();
     static PrintWriter fop = new PrintWriter(System.out);
+
     public static void main(String[] args) {
         try {
             A();
@@ -30,20 +30,55 @@ class Codeforces {
         }
     }
 
-    /* docstring*/
-    static void A() throws IOException{
+    /* docstring */
+    static void A() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
-          
+            int n = Integer.parseInt(sc.next());
+            int arr[] = sc.readArray(n);
+            int start = 0;
+            int index = 0;
+            int end = 0;
+            if(arr.length != 1){
+                while (index < arr.length) {
+                    if (arr[index] != index + 1) {
+                        start = index;
+                        break;
+                    }
+                    index++;
+                }
+                System.out.println("index = " + index + " start = " + start);
+                while (index < arr.length - 1) {
+                    int ans = Math.abs(arr[index] - arr[index + 1]);
+                    if (ans > 1) {
+                        end = index;
+                        break;
+                    }
+                    index++;
+                }
+                if (end == start)
+                    end = start + 1;
+                System.out.println("start = " + start + " end = " + end);
+                while (start < end) {
+                    int temp = arr[start];
+                    arr[start] = arr[end];
+                    arr[end] = temp;
+                    start++;
+                    end--;
+                }
+            }
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i]+" ");
+            }
+            System.out.println();
 
         }
         fop.flush();
         fop.close();
     }
 
-    /* docstring*/
-    static void B() throws IOException{
+    /* docstring */
+    static void B() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -52,8 +87,8 @@ class Codeforces {
         fop.close();
     }
 
-    /* docstring*/
-    static void C() throws IOException{
+    /* docstring */
+    static void C() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -62,8 +97,8 @@ class Codeforces {
         fop.close();
     }
 
-    /* docstring*/
-    static void D() throws IOException{
+    /* docstring */
+    static void D() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
@@ -71,9 +106,9 @@ class Codeforces {
         fop.flush();
         fop.close();
     }
-    
-    /* docstring*/
-    static void E() throws IOException{
+
+    /* docstring */
+    static void E() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             // Write Your Code...
