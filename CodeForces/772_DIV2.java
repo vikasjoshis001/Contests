@@ -20,12 +20,13 @@ class Codeforces {
 
     public static void main(String[] args) {
         try {
-            A();
-            // B();
+            // A();
+            B();
             // C();
             // D();
             // E();
         } catch (Exception e) {
+            System.out.println("error "+e);
             return;
         }
     }
@@ -35,32 +36,12 @@ class Codeforces {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
             int n = Integer.parseInt(sc.next());
-            int arr[] = new int[n];
-            boolean flag = true;
-            arr[0] = Integer.parseInt(sc.next());
-            arr[1] = Integer.parseInt(sc.next());
-            int num1 = arr[0];
-            int num2 = arr[1];
-            int prev = num1|num2;
-            for (int i = 2; i < arr.length; i++) {
-                int num = Integer.parseInt(sc.next());
-                arr[i] = num;
-                int next = num | num2;
-                if( next != prev) {
-                    flag = false;
-                }
-                num2 = num;
+            int ans = 0;
+            for (int i = 0; i < n; i++) {
+                    int num1 = Integer.parseInt(sc.next());
+                    ans = ans | num1;
             }
-            if(flag){
-                System.out.println(prev);
-            }
-            else{
-                int sum = 0;
-                for (int i = 0; i < arr.length; i++) {
-                    sum+=arr[i];
-                }
-                System.out.println(sum);
-            }
+            System.out.println(ans);
         }
         fop.flush();
         fop.close();
@@ -70,8 +51,26 @@ class Codeforces {
     static void B() throws IOException {
         int T = Integer.parseInt(sc.next());
         while (T-- > 0) {
-            // Write Your Code...
-        }
+            int n = Integer.parseInt(sc.next());
+            int arr[] = sc.readArray(n);
+            int ans = 0;
+            for (int i = 1; i < n-1; i++) {
+                if( arr[i] > arr[i-1] && arr[i] > arr[i+1]) {
+                    if (i + 2 < n){
+                        arr[i+1] = Math.max(arr[i],arr[i+2]);
+                    }
+                    else{
+                        arr[i+1] = arr[i];
+                    }
+                    ans++;
+                }
+            }
+            System.out.println(ans);
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i] + " ");
+            }
+            System.out.println("");
+            }
         fop.flush();
         fop.close();
     }
